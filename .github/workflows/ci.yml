@@ -70,4 +70,4 @@ jobs:
       uses: golangci/golangci-lint-action@v3
       with:
         version: latest
-        args: --timeout=5m --skip-dirs=cmd --disable=errcheck
+        args: --timeout=5m
