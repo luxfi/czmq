@@ -77,7 +77,10 @@ func TestMonitor(t *testing.T) {
 	port, _ := client.Bind("tcp://127.0.0.1:*")
 	assertEvent(t, clientmon, "LISTENING")
 
-	server.Connect(fmt.Sprint("tcp://127.0.0.1:", port))
+	err = server.Connect(fmt.Sprint("tcp://127.0.0.1:", port))
+	if err != nil {
+		t.Fatal(err)
+	}
 	assertEvent(t, servermon, "CONNECTED")
 
 	assertEvent(t, clientmon, "ACCEPTED")
