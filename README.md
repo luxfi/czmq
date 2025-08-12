@@ -1,7 +1,9 @@
-# czmq [![Build Status](https://travis-ci.org/zeromq/czmq.svg?branch=master)](https://travis-ci.org/zeromq/czmq) [![Doc Status](https://godoc.org/github.com/zeromq/czmq?status.png)](https://godoc.org/github.com/zeromq/czmq)
+# czmq - LuxFi Fork [![Go Reference](https://pkg.go.dev/badge/github.com/luxfi/czmq/v4.svg)](https://pkg.go.dev/github.com/luxfi/czmq/v4)
 
 ## Introduction
 A golang interface to the [CZMQ v4.2](http://czmq.zeromq.org) API.
+
+This is the LuxFi fork of the original [zeromq/czmq](https://github.com/zeromq/goczmq) Go bindings, maintained for use in the Lux Network ecosystem.
 
 ## Install
 ### Dependencies
@@ -9,20 +11,19 @@ A golang interface to the [CZMQ v4.2](http://czmq.zeromq.org) API.
 * [libzmq](https://github.com/zeromq/libzmq)
 * [czmq](https://github.com/zeromq/czmq)
 
-### For CZMQ master
+### Installation
+```bash
+go get github.com/luxfi/czmq/v4
 ```
-go get github.com/zeromq/czmq
-```
+
 #### A Note on Build Tags
 The CZMQ library includes experimental classes that are not built by default, but can be built
 by passing `--enable-drafts` to configure. Support for these draft classes are being added
 to czmq. To build these features against a CZMQ that has been compiled with `--enable-drafts`,
 use `go build -tags draft`.
 
-### For CMZQ = 4.2
-```
-go get github.com/luxfi/czmq/v4
-```
+### Version
+This fork maintains compatibility with CZMQ v4.2.0 and follows Go module versioning with the `/v4` suffix.
 
 ## Usage
 ### Direct CZMQ Sock API
@@ -33,7 +34,7 @@ package main
 import (
 	"log"
 
-	"github.com/zeromq/czmq"
+	"github.com/luxfi/czmq/v4"
 )
 
 func main() {
@@ -121,7 +122,7 @@ package main
 import (
 	"log"
 
-	"github.com/zeromq/czmq"
+	"github.com/luxfi/czmq/v4"
 )
 
 func main() {
@@ -201,7 +202,7 @@ package main
 import (
 	"log"
 
-	"github.com/zeromq/czmq"
+	"github.com/luxfi/czmq/v4"
 )
 
 func main() {
@@ -249,10 +250,25 @@ func main() {
 2015/05/26 21:56:43 dealer received 'World'
 ```
 ## GoDoc
-[godoc](https://godoc.org/github.com/zeromq/czmq)
+[godoc](https://godoc.org/github.com/luxfi/czmq/v4)
+
+## Dependencies
+
+This package has minimal dependencies:
+- [github.com/tilinna/z85](https://github.com/tilinna/z85) v1.0.0 - For Z85 encoding
+
+## Contributing
+
+Contributions are welcome! Please submit issues and pull requests to the [LuxFi CZMQ repository](https://github.com/luxfi/czmq).
 
 ## See Also
+* [LuxFi ZMQ](https://github.com/luxfi/zmq) - Pure Go ZeroMQ implementation
 * [Peter Kleiweg's](https://github.com/pebbe) [zmq4](https://github.com/pebbe/zmq4) bindings
+* Original [zeromq/goczmq](https://github.com/zeromq/goczmq) project
 
 ## License
 This project uses the MPL v2 license, see LICENSE
+
+## Original Project
+
+This is a fork of [zeromq/goczmq](https://github.com/zeromq/goczmq). The original project is licensed under MPL v2.
