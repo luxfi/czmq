@@ -132,7 +132,10 @@ func TestAuthPlain(t *testing.T) {
 	}()
 
 	writer := bufio.NewWriter(file)
-	writer.WriteString("admin=Password\n")
+	_, err = writer.WriteString("admin=Password\n")
+	if err != nil {
+		t.Error(err)
+	}
 	writer.Flush()
 	file.Close()
 
@@ -385,7 +388,10 @@ func TestAuthCurveAllowCertificate(t *testing.T) {
 	goodClientCert.Apply(goodClient)
 	goodClient.SetOption(SockSetCurveServerkey(serverKey))
 
-	goodClientCert.SavePublic(path.Join(testpath, "goodClient"))
+	err = goodClientCert.SavePublic(path.Join(testpath, "goodClient"))
+	if err != nil {
+		t.Error(err)
+	}
 
 	badClient := NewSock(Push)
 	defer badClient.Destroy()
