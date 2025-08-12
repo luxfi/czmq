@@ -212,7 +212,7 @@ func ExamplePoller() {
 	}
 
 	// Poller.Wait(millis) returns first socket that has a waiting message
-	poller.Wait(1)
+	_, _ = poller.Wait(1)
 }
 
 func benchmarkPollerSendFrame(size int, b *testing.B) {
