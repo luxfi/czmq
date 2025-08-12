@@ -136,18 +136,18 @@ func (c *Channeler) actor(recvChan chan<- [][]byte, options []SockOption) {
 			case "destroy":
 				disconnect := strings.Split(c.endpoints, ",")
 				for _, endpoint := range disconnect {
-					sock.Disconnect(endpoint)
+					_ = sock.Disconnect(endpoint)
 				}
-				pipe.SendMessage([][]byte{[]byte("ok")})
+				_ = pipe.SendMessage([][]byte{[]byte("ok")})
 				goto ExitActor
 			case "subscribe":
 				topic := string(cmd[1])
 				sock.SetOption(SockSetSubscribe(topic))
-				pipe.SendMessage([][]byte{[]byte("ok")})
+				_ = pipe.SendMessage([][]byte{[]byte("ok")})
 			case "unsubscribe":
 				topic := string(cmd[1])
 				sock.SetOption(SockSetUnsubscribe(topic))
-				pipe.SendMessage([][]byte{[]byte("ok")})
+				_ = pipe.SendMessage([][]byte{[]byte("ok")})
 			}
 
 		case sock:

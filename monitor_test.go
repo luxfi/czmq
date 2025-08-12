@@ -37,11 +37,23 @@ func TestMonitor(t *testing.T) {
 	clientmon := NewMonitor(client)
 	defer clientmon.Destroy()
 
-	clientmon.Verbose()
+	err := clientmon.Verbose()
+	if err != nil {
+		t.Fatal(err)
+	}
 
-	clientmon.Listen("LISTENING")
-	clientmon.Listen("ACCEPTED")
-	clientmon.Start()
+	err = clientmon.Listen("LISTENING")
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = clientmon.Listen("ACCEPTED")
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = clientmon.Start()
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	server := NewSock(Dealer)
 	defer server.Destroy()
@@ -49,9 +61,18 @@ func TestMonitor(t *testing.T) {
 	servermon := NewMonitor(server)
 	defer servermon.Destroy()
 
-	servermon.Listen("CONNECTED")
-	servermon.Listen("DISCONNECTED")
-	servermon.Start()
+	err = servermon.Listen("CONNECTED")
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = servermon.Listen("DISCONNECTED")
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = servermon.Start()
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	port, _ := client.Bind("tcp://127.0.0.1:*")
 	assertEvent(t, clientmon, "LISTENING")
