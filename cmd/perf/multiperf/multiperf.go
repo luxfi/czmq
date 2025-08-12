@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	czmq "github.com/zeromq/goczmq/v4"
+	czmq "github.com/luxfi/czmq/v4"
 )
 
 func main() {

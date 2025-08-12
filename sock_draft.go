@@ -1,6 +1,7 @@
+//go:build draft
 // +build draft
 
-package goczmq
+package czmq
 
 /*
 #include "czmq.h"

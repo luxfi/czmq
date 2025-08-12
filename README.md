@@ -1,4 +1,4 @@
-# goczmq [![Build Status](https://travis-ci.org/zeromq/goczmq.svg?branch=master)](https://travis-ci.org/zeromq/goczmq) [![Doc Status](https://godoc.org/github.com/zeromq/goczmq?status.png)](https://godoc.org/github.com/zeromq/goczmq)
+# czmq [![Build Status](https://travis-ci.org/zeromq/czmq.svg?branch=master)](https://travis-ci.org/zeromq/czmq) [![Doc Status](https://godoc.org/github.com/zeromq/czmq?status.png)](https://godoc.org/github.com/zeromq/czmq)
 
 ## Introduction
 A golang interface to the [CZMQ v4.2](http://czmq.zeromq.org) API.
@@ -11,24 +11,19 @@ A golang interface to the [CZMQ v4.2](http://czmq.zeromq.org) API.
 
 ### For CZMQ master
 ```
-go get github.com/zeromq/goczmq
+go get github.com/zeromq/czmq
 ```
 #### A Note on Build Tags
 The CZMQ library includes experimental classes that are not built by default, but can be built
 by passing `--enable-drafts` to configure. Support for these draft classes are being added
-to goczmq. To build these features against a CZMQ that has been compiled with `--enable-drafts`,
+to czmq. To build these features against a CZMQ that has been compiled with `--enable-drafts`,
 use `go build -tags draft`.
 
 ### For CMZQ = 4.2
 ```
-go get gopkg.in/zeromq/goczmq.v4
+go get github.com/luxfi/czmq/v4
 ```
-**Note**: [CZMQ 4.2](https://github.com/zeromq/czmq/releases) is has not been released yet.
 
-### For CZMQ Before 4.0
-```
-go get gopkg.in/zeromq/goczmq.v1
-```
 ## Usage
 ### Direct CZMQ Sock API
 #### Example
@@ -38,12 +33,12 @@ package main
 import (
 	"log"
 
-	"github.com/zeromq/goczmq"
+	"github.com/zeromq/czmq"
 )
 
 func main() {
 	// Create a router socket and bind it to port 5555.
-	router, err := goczmq.NewRouter("tcp://*:5555")
+	router, err := czmq.NewRouter("tcp://*:5555")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -52,7 +47,7 @@ func main() {
 	log.Println("router created and bound")
 
 	// Create a dealer socket and connect it to the router.
-	dealer, err := goczmq.NewDealer("tcp://127.0.0.1:5555")
+	dealer, err := czmq.NewDealer("tcp://127.0.0.1:5555")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -63,7 +58,7 @@ func main() {
 	// Send a 'Hello' message from the dealer to the router.
 	// Here we send it as a frame ([]byte), with a FlagNone
 	// flag to indicate there are no more frames following.
-	err = dealer.SendFrame([]byte("Hello"), goczmq.FlagNone)
+	err = dealer.SendFrame([]byte("Hello"), czmq.FlagNone)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -86,7 +81,7 @@ func main() {
 	// lets the dealer know which client to send the message.
 	// The FlagMore flag tells the router there will be more
 	// frames in this message.
-	err = router.SendFrame(request[0], goczmq.FlagMore)
+	err = router.SendFrame(request[0], czmq.FlagMore)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -95,7 +90,7 @@ func main() {
 
 	// Next send the reply. The FlagNone flag tells the router
 	// that this is the last frame of the message.
-	err = router.SendFrame([]byte("World"), goczmq.FlagNone)
+	err = router.SendFrame([]byte("World"), czmq.FlagNone)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -126,12 +121,12 @@ package main
 import (
 	"log"
 
-	"github.com/zeromq/goczmq"
+	"github.com/zeromq/czmq"
 )
 
 func main() {
 	// Create a router socket and bind it to port 5555.
-	router, err := goczmq.NewRouter("tcp://*:5555")
+	router, err := czmq.NewRouter("tcp://*:5555")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -140,7 +135,7 @@ func main() {
 	log.Println("router created and bound")
 
 	// Create a dealer socket and connect it to the router.
-	dealer, err := goczmq.NewDealer("tcp://127.0.0.1:5555")
+	dealer, err := czmq.NewDealer("tcp://127.0.0.1:5555")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -206,20 +201,20 @@ package main
 import (
 	"log"
 
-	"github.com/zeromq/goczmq"
+	"github.com/zeromq/czmq"
 )
 
 func main() {
 	// Create a router channeler and bind it to port 5555.
 	// A channeler provides a thread safe channel interface
 	// to a *Sock
-	router := goczmq.NewRouterChanneler("tcp://*:5555")
+	router := czmq.NewRouterChanneler("tcp://*:5555")
 	defer router.Destroy()
 
 	log.Println("router created and bound")
 
 	// Create a dealer channeler and connect it to the router.
-	dealer := goczmq.NewDealerChanneler("tcp://127.0.0.1:5555")
+	dealer := czmq.NewDealerChanneler("tcp://127.0.0.1:5555")
 	defer dealer.Destroy()
 
 	log.Println("dealer created and connected")
@@ -254,7 +249,7 @@ func main() {
 2015/05/26 21:56:43 dealer received 'World'
 ```
 ## GoDoc
-[godoc](https://godoc.org/github.com/zeromq/goczmq)
+[godoc](https://godoc.org/github.com/zeromq/czmq)
 
 ## See Also
 * [Peter Kleiweg's](https://github.com/pebbe) [zmq4](https://github.com/pebbe/zmq4) bindings

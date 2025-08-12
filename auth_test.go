@@ -1,4 +1,4 @@
-package goczmq
+package czmq
 
 import (
 	"bufio"

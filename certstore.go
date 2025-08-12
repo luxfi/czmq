@@ -1,4 +1,4 @@
-package goczmq
+package czmq
 
 /*
 #include "czmq.h"
@@ -31,7 +31,7 @@ func NewCertStore(location string) *CertStore {
 func NewCertStoreInMemory() *CertStore {
 	return &CertStore{
 		zcertstoreT: C.zcertstore_new(nil),
-        }
+	}
 }
 
 // Insert inserts a certificate into the store in memory.

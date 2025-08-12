@@ -1,4 +1,4 @@
-package goczmq
+package czmq
 
 import (
 	"C"
@@ -6,7 +6,7 @@ import (
 )
 
 // ReadWriter provides an io.ReadWriter compatible
-// interface for goczmq.Sock
+// interface for czmq.Sock
 type ReadWriter struct {
 	sock          *Sock
 	poller        *Poller
@@ -16,7 +16,7 @@ type ReadWriter struct {
 	timeoutMillis int
 }
 
-// NewReadWriter accepts a sock and returns a goczmq.ReadWriter. The
+// NewReadWriter accepts a sock and returns a czmq.ReadWriter. The
 // io.ReadWriter should now be considered responsible for this
 // Sock.
 func NewReadWriter(sock *Sock) (*ReadWriter, error) {
