@@ -211,7 +211,7 @@ func (c *Channeler) channeler(commandChan <-chan string, sendChan <-chan [][]byt
 			default:
 				parts := strings.Split(cmd, " ")
 				numParts := len(parts)
-				message := make([][]byte, numParts, numParts)
+				message := make([][]byte, numParts)
 				for i, p := range parts {
 					message[i] = []byte(p)
 				}
@@ -292,7 +292,6 @@ func NewSubChanneler(endpoints string, varargs ...interface{}) *Channeler {
 			options = append(options, x)
 		default:
 			err = fmt.Errorf("Don't know how to handle a %T argument to NewSubChanneler", arg)
-			break
 		}
 	}
 

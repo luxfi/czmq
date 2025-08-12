@@ -49,5 +49,9 @@ func main() {
 	cert.SetMeta("email", strings.TrimSpace(email))
 	cert.SetMeta("organization", strings.TrimSpace(organization))
 	cert.SetMeta("version", strings.TrimSpace(version))
-	cert.Save(filename)
+	err = cert.Save(filename)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error saving certificate: %v\n", err)
+		os.Exit(1)
+	}
 }
