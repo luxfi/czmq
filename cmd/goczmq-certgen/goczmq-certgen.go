@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/zeromq/goczmq/v4"
+	"github.com/luxfi/czmq/v4"
 )
 
 func main() {
@@ -44,7 +44,7 @@ func main() {
 		log.Fatal("error reading version")
 	}
 
-	cert := goczmq.NewCert()
+	cert := czmq.NewCert()
 	cert.SetMeta("name", strings.TrimSpace(name))
 	cert.SetMeta("email", strings.TrimSpace(email))
 	cert.SetMeta("organization", strings.TrimSpace(organization))

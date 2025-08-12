@@ -1,9 +1,9 @@
-package goczmq
+package czmq
 
 import (
 	"fmt"
-	"testing"
 	"github.com/tilinna/z85"
+	"testing"
 )
 
 func TestProxy(t *testing.T) {

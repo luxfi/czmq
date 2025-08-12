@@ -1,5 +1,6 @@
 //go:generate gsl sockopts.xml
-package goczmq
+package czmq
+
 /*  =========================================================================
     zsock_option - get/set 0MQ socket options
 
@@ -8,8 +9,8 @@ package goczmq
             ****************************************************
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
-    This file is part of goczmq, the high-level go binding for CZMQ:
-    http://github.com/zeromq/goczmq
+    This file is part of czmq, the high-level go binding for CZMQ:
+    http://github.com/zeromq/czmq
 
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -20,6 +21,7 @@ package goczmq
 import (
 	"testing"
 )
+
 func TestRouterNotify(t *testing.T) {
 	sock := NewSock(Router)
 	testval := 1
@@ -574,4 +576,3 @@ func TestTcpAcceptFilter(t *testing.T) {
 	}
 	sock.Destroy()
 }
-
