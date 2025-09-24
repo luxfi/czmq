@@ -1,6 +1,6 @@
 module github.com/luxfi/czmq/v4/cmd/perf
 
-go 1.12
+go 1.25
 
 replace github.com/luxfi/czmq/v4 => ../../
 
