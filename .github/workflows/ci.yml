@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        go: ['1.21', '1.22', '1.23']
+        go: ['1.26.3']
 
     steps:
     - uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version: '1.23'
+        go-version: '1.26.3'
 
     - name: Install dependencies
       run: |
