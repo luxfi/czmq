@@ -1,7 +1,5 @@
 module github.com/luxfi/czmq/v4/cmd/perf
 
-go 1.25.5
+go 1.26.3
 
-replace github.com/luxfi/czmq/v4 => ../../
-
-require github.com/luxfi/czmq/v4 v4.0.0
+require github.com/luxfi/czmq/v4 v4.2.2
