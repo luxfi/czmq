@@ -1,5 +1,5 @@
 module github.com/luxfi/czmq/v4/cmd/perf
 
-go 1.26.3
+go 1.26.4
 
 require github.com/luxfi/czmq/v4 v4.2.2
