@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/hero.svg" alt="czmq" width="880"></p>
+
 # czmq - LuxFi Fork [![Go Reference](https://pkg.go.dev/badge/github.com/luxfi/czmq/v4.svg)](https://pkg.go.dev/github.com/luxfi/czmq/v4)
 
 ## Introduction
