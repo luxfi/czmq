@@ -367,6 +367,8 @@ func TestAuthCurveAllowCertificate(t *testing.T) {
 	// framework removes it, so there is nothing to leave behind or commit.
 	testpath := t.TempDir()
 
+	var err error
+
 	auth := NewAuth()
 	defer auth.Destroy()
 
