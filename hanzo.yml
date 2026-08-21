@@ -1,0 +1,19 @@
+# Native CI for luxfi/czmq, on the git.hanzo.ai runner fleet.
+#
+# No images: this is a cgo binding consumed as a module.
+test:
+  - name: build
+    # goczmq.go declares `#cgo pkg-config: libczmq libzmq libsodium`, so the
+    # three C libraries have to exist before the Go toolchain is ever asked
+    # anything — without them the build stops at pkg-config, not at a symbol:
+    #     Package libczmq was not found in the pkg-config search path.
+    # The runner image carries none of them.
+    run: |
+      set -e
+      apt-get update -qq
+      apt-get install -y -qq --no-install-recommends libczmq-dev libzmq3-dev libsodium-dev pkg-config
+      go build ./...
+  - name: unit
+    run: |
+      set -e
+      go test ./... -count=1
