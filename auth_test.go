@@ -359,11 +359,13 @@ func TestAuthCurveAllowCertificate(t *testing.T) {
 		t.Skip("Skipping CURVE test on macOS CI due to known timeout issues")
 	}
 
-	testpath := path.Join("testauth")
-	err := os.Mkdir(testpath, 0777)
-	if err != nil {
-		t.Error(err)
-	}
+	// t.TempDir, not a directory in the source tree. This test used to mkdir
+	// "testauth" beside the code and RemoveAll it at the end, so an interrupted
+	// run left the directory behind — and one such leftover, testauth/goodClient,
+	// was committed. From then on os.Mkdir hit "file exists" on every clean
+	// checkout and the test could not pass anywhere. TempDir is per-run and the
+	// framework removes it, so there is nothing to leave behind or commit.
+	testpath := t.TempDir()
 
 	auth := NewAuth()
 	defer auth.Destroy()
@@ -474,5 +476,4 @@ func TestAuthCurveAllowCertificate(t *testing.T) {
 		t.Errorf("want %#v, have %#v", nil, s)
 	}
 
-	os.RemoveAll(testpath)
 }
