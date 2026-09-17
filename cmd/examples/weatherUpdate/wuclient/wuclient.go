@@ -35,7 +35,7 @@ func main() {
 	fmt.Printf("Collecting updates from weather server for %s…\n", filter)
 	subSock.Connect(pubEndpoint)
 
-	for i := 0; i < 100; i++ {
+	for range 100 {
 		msg, _, err := subSock.RecvFrame()
 		if err != nil {
 			panic(err)

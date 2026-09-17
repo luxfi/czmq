@@ -255,7 +255,7 @@ func BenchmarkChanneler(b *testing.B) {
 }
 
 func confirmXPubSubscriptions(t *testing.T, pub *Channeler, count int) {
-	for i := 0; i < count; i++ {
+	for range count {
 		select {
 		case <-pub.RecvChan:
 		case <-time.After(time.Second * 2):
